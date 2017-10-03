@@ -43,7 +43,7 @@ class PurePursuitController
 
         //list to hold the reference control path
         //list<Node*>	referenceControl;
-        list<pair<Point2D, double>>   referenceControl;
+        list<pair<Point2D, double> >   referenceControl;
 
         //varibles to hold the current target control point
         Point2D 	currentWayPoint;
@@ -68,7 +68,7 @@ class PurePursuitController
         int     handleWayPoints();
         int		calcControl(ControlCommand &c, double &vRef);
         //void	setReferenceControl(list<Node*> referenceControl_in);
-        void	setReferenceControl(list<pair<Point2D, double>> referenceControl_in);
+        void	setReferenceControl(list<pair<Point2D, double> > referenceControl_in);
         bool	nextControlWpEvent(){return nextWpEventIndicator;};
         bool	wpInsideLookAhead(){return wpInsideLookAheadIndicator;};
         bool	isOkAddNewIntermediateNode(){return isOkAddNewIntermediateNodeIndicator;};

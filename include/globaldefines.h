@@ -31,7 +31,9 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#ifdef _WIN32
 #include <conio.h>
+#endif
 
 using namespace std;
 

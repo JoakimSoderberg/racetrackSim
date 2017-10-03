@@ -1,9 +1,14 @@
 #pragma once
 #define _USE_MATH_DEFINES
 
-#include <freeglut.h>
-#include <gl.h>
-#include <glu.h>
+#include <GL/freeglut.h>
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 
 
 #include <stdlib.h>

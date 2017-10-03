@@ -24,7 +24,7 @@ public:
 
 	void set_obstacle_map(ObstacleMap *obstacleMapIn){obstacleMap=obstacleMapIn;}
 
-    void setControlTrajectory(list<pair<Point2D, double>> controlReference)
+    void setControlTrajectory(list<pair<Point2D, double> > controlReference)
     {
         simulationModel->controller->setReferenceControl(controlReference);
     }

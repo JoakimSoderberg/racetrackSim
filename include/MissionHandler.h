@@ -4,7 +4,7 @@
 #include "OptimalTrajectory.h"
 #include "ObstacleMap.h"
 //#include "ModelParameters.h"
-#define M_PI 3.14159265358979323846
+#include <cmath>
 
 class MissionHandler
 {
@@ -42,6 +42,6 @@ private:
     int numberOfMissions;
 	OptimalTrajectory *OptTrajectory;
 	ObstacleMap *obstacleMap;
-    vector<list<WayPoint>> referenceWaypoints;
-	vector<list<WayPoint>> nextReferenceWaypoints;
+    vector<list<WayPoint> > referenceWaypoints;
+	vector<list<WayPoint> > nextReferenceWaypoints;
 };

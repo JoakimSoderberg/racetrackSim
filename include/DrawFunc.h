@@ -1,19 +1,15 @@
 #ifndef __DRAW_FUNC_INCLUDED__
 #define __DRAW_FUNC_INCLUDED__
 
-#ifdef __GNUG__
-
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #include <GL/glut.h>
 #include <GL/freeglut.h>
-
-#else 
-
-#include <freeglut.h>
-#include <gl.h>
-#include <glu.h>
-
-#endif
 
 #include <iostream>
 #include <vector>

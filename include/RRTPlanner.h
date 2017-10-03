@@ -98,8 +98,8 @@ class Planner
     int         checkUpdateBestNode(Node& nodeIn);
     void        recalculateCostToGo();
     void        updateUpperBoundCost(Node& nodeIn);
-    void        calculateHeuristicCost(Sample &sampleIn, list<Node*> &nodeList, vector<pair<Node*, double>> &nodeCostPairVector, bool optimization);
-    void        calculateHeuristicCostToStoppingNodes(Sample &sampleIn, list<Node*> &nodeList, vector<pair<Node*, double>> &nodeCostPairVector, bool optimization);
+    void        calculateHeuristicCost(Sample &sampleIn, list<Node*> &nodeList, vector<pair<Node*, double> > &nodeCostPairVector, bool optimization);
+    void        calculateHeuristicCostToStoppingNodes(Sample &sampleIn, list<Node*> &nodeList, vector<pair<Node*, double> > &nodeCostPairVector, bool optimization);
     void        propagateSafeState(Node& nodeIn);
 	void		markForDeletion(Node& keepFromNode);
 
@@ -150,7 +150,7 @@ public:
     /****************************************************************/
     /*** Get methods ************************************************/
     /****************************************************************/
-    int                 getBestControl (list<pair<Point2D, double>>& controlOut);
+    int                 getBestControl (list<pair<Point2D, double> >& controlOut);
 	Node&               getBestNode();
     Node&               getRootNode ();
     MapHandler&         getMapHandler(){return *mapHandler;}

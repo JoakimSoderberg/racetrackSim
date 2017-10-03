@@ -11,7 +11,7 @@
 #include <fstream>
 //#include "matrix.h"
 #include "PlannerTypes.h"
-#define M_PI 3.14159265358979323846
+#include <cmath>
 
 typedef struct Optimal_trajectory_info
 {

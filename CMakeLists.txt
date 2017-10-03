@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(racetracksim)
 
+# Add our own CMake scripts to the module path.
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+# Set some nicer output dirs.
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
+
 set(SRCS
     "${PROJECT_SOURCE_DIR}/src/main.cpp"
     "${PROJECT_SOURCE_DIR}/src/BTHandler.cpp"
@@ -36,7 +44,7 @@ set(SRCS
     "${PROJECT_SOURCE_DIR}/src/SamplingStrategies.cpp"
     "${PROJECT_SOURCE_DIR}/src/Simulator.cpp"
     "${PROJECT_SOURCE_DIR}/src/State.cpp"
-    "${PROJECT_SOURCE_DIR}/src/TreeStructure.cpp"
+    #"${PROJECT_SOURCE_DIR}/src/TreeStructure.cpp"
     "${PROJECT_SOURCE_DIR}/src/bitmap.c")
 
 # Only used by generators like Visual Studio that won't list the header files in the project otherwise.
@@ -73,17 +81,22 @@ set(HDRS
     "${PROJECT_SOURCE_DIR}/include/SamplingStrategies.h"
     "${PROJECT_SOURCE_DIR}/include/Simulator.h"
     "${PROJECT_SOURCE_DIR}/include/State.h"
-    "${PROJECT_SOURCE_DIR}/include/TreeStructure.h")
+    #"${PROJECT_SOURCE_DIR}/include/TreeStructure.h"
+    )
 
 add_executable(racetracksim ${SRCS} ${HDRS})
 
+target_include_directories(racetracksim PRIVATE "${PROJECT_SOURCE_DIR}/include")
+
 
 # TODO: "proper way"
-#find_package(GLUT REQUIRED)
+find_package(FreeGLUT)
+message("GLUT libraries: ${FREEGLUT_LIBRARIES}")
+message("GLUT Include dir: ${FREEGLUT_INCLUDE_DIR}")
 
 # For now we hard code it
-set(GLUT_LIBRARIES "" CACHE STRING "Path to glut library")
-set(GLUT_INCLUDE_DIR "" CACHE STRING "Path to glut include dir")
+#set(GLUT_LIBRARIES "" CACHE STRING "Path to glut library")
+#set(GLUT_INCLUDE_DIR "" CACHE STRING "Path to glut include dir")
 
-target_link_libraries(racetracksim ${GLUT_LIBRARIES})
-include_directories(${GLUT_INCLUDE_DIR})
+target_link_libraries(racetracksim ${FREEGLUT_LIBRARIES})
+target_include_directories(racetracksim PRIVATE ${FREEGLUT_INCLUDE_DIR})
