@@ -62,7 +62,7 @@ ELSE (WIN32)
   
 ENDIF (WIN32)
 
-SET( FREEGLUT_FOUND "NO" )
+#SET( FREEGLUT_FOUND "NO" )
 IF(FREEGLUT_INCLUDE_DIR)
   IF(FREEGLUT_glut_LIBRARY)
     # Is -lXi and -lXmu required on all platforms that have it?
@@ -85,25 +85,3 @@ MARK_AS_ADVANCED(
   FREEGLUT_Xmu_LIBRARY
   FREEGLUT_Xi_LIBRARY
   )
-  
-#=============================================================================
-# InViWo Build
-  
-#--------------------------------------------------------------------
-# Build FreeGLUT lib
-if(NOT FREEGLUT_FOUND)
-    set(BUILD_FREEGLUT 1)
-    set(FREEGLUT_INCLUDE_DIR  ${IVW_MODULE_DIR}/glut/ext/freeglut/include)
-    set(FREEGLUT_LIBRARY freeglut)
-    set(FREEGLUT_LIBRARY_DIR ${LIBRARY_OUTPUT_PATH})
-    mark_as_advanced(FORCE  FREEGLUT_INCLUDE_DIR )
-    mark_as_advanced(FORCE  FREEGLUT_LIBRARY )
-    
-    if(WIN32 AND BUILD_SHARED_LIBS)
-        set(FREEGLUT_LIBRARIES optimized ${IVW_LIBRARY_DIR}/Release/${FREEGLUT_LIBRARY}.lib debug ${IVW_LIBRARY_DIR}/Debug/${FREEGLUT_LIBRARY}${CMAKE_DEBUG_POSTFIX}.lib)
-    else()
-        set(FREEGLUT_LIBRARIES optimized ${FREEGLUT_LIBRARY} debug ${FREEGLUT_LIBRARY}${CMAKE_DEBUG_POSTFIX})
-    endif()
-    
-endif(NOT FREEGLUT_FOUND)
-

@@ -44,7 +44,7 @@ set(SRCS
     "${PROJECT_SOURCE_DIR}/src/SamplingStrategies.cpp"
     "${PROJECT_SOURCE_DIR}/src/Simulator.cpp"
     "${PROJECT_SOURCE_DIR}/src/State.cpp"
-    #"${PROJECT_SOURCE_DIR}/src/TreeStructure.cpp"
+    "${PROJECT_SOURCE_DIR}/src/TreeStructure.cpp"
     "${PROJECT_SOURCE_DIR}/src/bitmap.c")
 
 # Only used by generators like Visual Studio that won't list the header files in the project otherwise.
@@ -81,7 +81,7 @@ set(HDRS
     "${PROJECT_SOURCE_DIR}/include/SamplingStrategies.h"
     "${PROJECT_SOURCE_DIR}/include/Simulator.h"
     "${PROJECT_SOURCE_DIR}/include/State.h"
-    #"${PROJECT_SOURCE_DIR}/include/TreeStructure.h"
+    "${PROJECT_SOURCE_DIR}/include/TreeStructure.h"
     )
 
 add_executable(racetracksim ${SRCS} ${HDRS})
@@ -89,14 +89,21 @@ add_executable(racetracksim ${SRCS} ${HDRS})
 target_include_directories(racetracksim PRIVATE "${PROJECT_SOURCE_DIR}/include")
 
 
-# TODO: "proper way"
-find_package(FreeGLUT)
-message("GLUT libraries: ${FREEGLUT_LIBRARIES}")
-message("GLUT Include dir: ${FREEGLUT_INCLUDE_DIR}")
+# TODO: "proper way" but the find script sucks :)
+#find_package(FreeGLUT REQUIRED)
+#message("GLUT libraries: ${FREEGLUT_LIBRARIES}")
+#message("GLUT Include dir: ${FREEGLUT_INCLUDE_DIR}")
 
 # For now we hard code it
-#set(GLUT_LIBRARIES "" CACHE STRING "Path to glut library")
-#set(GLUT_INCLUDE_DIR "" CACHE STRING "Path to glut include dir")
+set(FREEGLUT_LIBRARIES "" CACHE STRING "Path to glut library")
+set(FREEGLUT_INCLUDE_DIR "" CACHE STRING "Path to glut include dir")
+if (NOT FREEGLUT_LIBRARIES)
+    message(FATAL_ERROR "\nYou must specify the path to the freeglut library with -DFREEGLUT_LIBRARIES=<path>")
+endif()
+
+if (NOT FREEGLUT_INCLUDE_DIR)
+    message(FATAL_ERROR "\nYou must specify the path to the freeglut library with -DFREEGLUT_INCLUDE_DIR=<path>")
+endif()
 
 target_link_libraries(racetracksim ${FREEGLUT_LIBRARIES})
 target_include_directories(racetracksim PRIVATE ${FREEGLUT_INCLUDE_DIR})
